@@ -7,12 +7,10 @@ chrome.runtime.onMessage.addListener(
 );
 
 function sendUrls(className) {
-	$( className ).each(function() {
+	for (sheet of document.querySelectorAll(className)) {
 		chrome.runtime.sendMessage({
-			"message": "download_sheet",
-			"options": {"url": $(this).attr('src')}
+				"message": "download_sheet",
+				"options": {"url": sheet.getAttribute("src")}
 		})
-	});
+	}
 };
-
-//  
