@@ -11,7 +11,7 @@
 		"64": "images/icon64.png",
 		"128": "images/icon128.png"         
 	},
-	"permissions": ["https://www.musescore.com/", "tabs", "contextMenus"],
+	"permissions": ["https://www.musescore.com/", "tabs", "contextMenus", "downloads"],
 	"content_scripts": [
         {
           "matches": [

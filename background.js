@@ -26,3 +26,10 @@ function userClicked() {
 		chrome.tabs.sendMessage(activeTab.id, { "message": "user_clicked" });
 	})
 }
+
+// Download the sheets
+chrome.runtime.onMessage.addListener(function(request, sender) {
+	if (request.message === "download_sheet") {
+		chrome.downloads.download({ "url": request.options.url })
+	}
+});

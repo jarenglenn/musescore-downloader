@@ -1,13 +1,18 @@
 chrome.runtime.onMessage.addListener(
 	function (request, sender, sendResponse) {
 		if (request.message === "user_clicked") {
-			downloadMusic();
+			sendUrls('._3DXeP');
 		}
 	}
 );
 
-function downloadMusic() {
-	$( '._3DXeP' ).each(function() {
-		console.log($(this).attr('src'))
+function sendUrls(className) {
+	$( className ).each(function() {
+		chrome.runtime.sendMessage({
+			"message": "download_sheet",
+			"options": {"url": $(this).attr('src')}
+		})
 	});
 };
+
+//  
