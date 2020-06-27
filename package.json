@@ -1,6 +1,6 @@
 {
   "name": "musescore-downloader",
-  "version": "0.0.1",
+  "version": "0.3",
   "description": "Downloads Musescore music sheets for fre",
   "scripts": {
     "build": "node utils/build.js",

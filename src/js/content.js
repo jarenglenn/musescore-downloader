@@ -4,16 +4,22 @@ import jsPDF from 'jspdf';
 chrome.runtime.onMessage.addListener(
 	function (request, sender, sendResponse) {
 		if (request.message === "user_clicked") {
-			sendUrls('._3DXeP');
+			createPDF('._3DXeP');
 		}
 	}
 );
 
-function sendUrls(className) {
-	$( className ).each(function() {
-		chrome.runtime.sendMessage({
-			"message": "download_sheet",
-			"options": {"url": $(this).attr('src')}
-		})
+function createPDF(sheetClassName) {
+	var sheetPDF = new jsPDF({
+		unit: "in",
+		format: "letter"
 	});
+
+	$( sheetClassName ).each(function() {
+		sheetPDF.addImage($(this)[0], 'PNG', 0, 0, 8.5, 11);
+		sheetPDF.addPage("letter");
+	});
+	
+	sheetPDF.deletePage(sheetPDF.internal.getNumberOfPages());
+	sheetPDF.save('sheets.pdf');
 };
